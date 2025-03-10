@@ -18,7 +18,7 @@ export default function SolutionsCard ({icon, title, items, description, buttonT
                     items.map((item, index) => (
                         <li key={index} className="flex items-start gap-2">
                             <div className="mt-1">
-                                <Bulletpoint />
+                                {/* <Bulletpoint /> */} {/* Comentado para que no se muestre el punto, queda feito */}
                             </div>
                             <span className="text-gray-600">{item}</span>
                         </li>
