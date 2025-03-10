@@ -10,7 +10,7 @@ const DMSans = DM_Sans({
 {/*Falta cambiar paleta de colores*/}
 export default function Navbar() {
     return (
-        <div className="fixed w-full z-50">
+        <div className="w-full z-50"> {/* Puede ser fijo pero no se si es necesario --> fixed */}
             {/* Barra de contactos */}
             <div className={`bg-[#22C55E] text-white py-4 text-sm ${DMSans.className}`}>
                 <div className="max-w-[1400px] mx-auto px-8 flex justify-between items-center">
