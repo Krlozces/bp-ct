@@ -5,6 +5,13 @@ import Solutions from "@/components/Solutions";
 import IntroTransition from "@/components/IntroTransition";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
+import Testimonials from "@/components/Testimonials";
+import Pricing from "@/components/Pricing";
+import FAQ from "@/components/FAQ";
+import Contact from "@/components/Contact";
+import Demo from "@/components/Demo";
+import Support from "@/components/Support";
+import ChatBot from "@/components/ChatBot";
 
 export default function Home() {
   return (
@@ -15,8 +22,14 @@ export default function Home() {
         <Hero />
         <Features />
         <Solutions />
+        <Testimonials />
+        <Pricing />
+        <Demo />
+        <FAQ />
+        <Contact />
       </main>
-      <Footer />      
+      <Footer />
+      <ChatBot />
     </div>
   );
 }
