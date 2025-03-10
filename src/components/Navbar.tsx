@@ -25,7 +25,7 @@ export default function Navbar() {
                         </span>
                         <span className="flex items-center gap-2">
                             <span className="text-lg"><Phone size={24} color="#FFFFFF" /></span>
-                            <span>(01) 730 4000</span>
+                            <span>(074) 730 400</span>
                         </span>
                     </div>
                     <div className="flex items-center gap-2">
