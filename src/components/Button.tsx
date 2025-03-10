@@ -1,7 +1,15 @@
-export default function Button ({children}: {children: React.ReactNode}) {
+interface ButtonProps {
+    children: React.ReactNode;
+    className?: string;
+}
+
+export default function Button({ children, className = "" }: ButtonProps) {
     return (
         <div>
-            <button className="bg-[#3B82F6] text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors duration-300 ease-in-out hover:scale-105 hover:shadow-lg hover:shadow-blue-500/50 hover:shadow-md hover:text-white hover:font-bold hover:cursor-pointer">
+            <button className={`bg-[#3B82F6] text-white px-4 py-2 
+                rounded-md hover:bg-blue-600 transition-colors duration-300 ease-in-out 
+                hover:scale-105 hover:shadow-lg hover:shadow-blue-500/50 hover:shadow-md
+                 hover:text-white hover:font-bold hover:cursor-pointer ${className}`}>
                 {children}
             </button>
         </div>
