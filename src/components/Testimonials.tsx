@@ -5,6 +5,10 @@ import { DM_Sans } from "next/font/google";
 import React from "react";
 import Image from "next/image";
 import { FaQuoteLeft } from "react-icons/fa";
+import team1 from "../components/assets/team1.jpeg";
+import team2 from "../components/assets/team2.jpeg";
+import team3 from "../components/assets/team3.jpeg";
+
 
 const DMSans = DM_Sans({
     weight: ["900", "800", "700", "600"],
@@ -16,21 +20,21 @@ const testimonials = [
         name: "Carlos Ramírez",
         position: "Gerente General",
         company: "Tech Solutions SAC",
-        image: "/testimonials/client1.jpg",
+        image:  team1,
         testimonial: "El software ha transformado completamente la forma en que manejamos nuestras operaciones. La eficiencia ha aumentado significativamente y el soporte técnico es excepcional."
     },
     {
         name: "Ana Martínez",
         position: "Directora de Operaciones",
         company: "Global Retail",
-        image: "/testimonials/client2.jpg",
+        image: team2,
         testimonial: "La interfaz intuitiva y las funciones personalizables nos han permitido adaptar el sistema perfectamente a nuestras necesidades. Muy recomendado."
     },
     {
         name: "Roberto Sánchez",
         position: "CEO",
         company: "Innovate Corp",
-        image: "/testimonials/client3.jpg",
+        image: team3,
         testimonial: "La implementación fue rápida y el equipo de soporte nos guió en todo el proceso. Ahora tenemos un control total sobre nuestras operaciones."
     }
 ];

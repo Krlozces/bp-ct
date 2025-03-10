@@ -12,6 +12,9 @@ import Contact from "@/components/Contact";
 import Demo from "@/components/Demo";
 import Support from "@/components/Support";
 import ChatBot from "@/components/ChatBot";
+import Team from "@/components/Team";
+import Technologies from "@/components/Technologies";
+import Comparison from "@/components/Comparison";
 
 export default function Home() {
   return (
@@ -23,9 +26,12 @@ export default function Home() {
         <Features />
         <Solutions />
         <Testimonials />
-        <Pricing />
+        <Comparison />
         <Demo />
+        <Technologies />
         <FAQ />
+        
+        <Team />
         <Contact />
       </main>
       <Footer />
