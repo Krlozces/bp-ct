@@ -12,7 +12,7 @@ export default function Navbar() {
     return (
         <div className="fixed w-full z-50">
             {/* Barra de contactos */}
-            <div className={`bg-[#22C55E] text-white py-2 text-sm ${DMSans.className}`}>
+            <div className={`bg-[#22C55E] text-white py-4 text-sm ${DMSans.className}`}>
                 <div className="max-w-[1400px] mx-auto px-8 flex justify-between items-center">
                     <div className="flex space-x-6 text-sm">
                         <span className="flex items-center gap-2">
@@ -24,7 +24,7 @@ export default function Navbar() {
                             <span>+51 976 217 463</span>
                         </span>
                         <span className="flex items-center gap-2">
-                            <span className="text-lg"><AlarmClock size={24} color="#FFFFFF" /></span>
+                            <span className="text-lg"><Phone size={24} color="#FFFFFF" /></span>
                             <span>(01) 730 4000</span>
                         </span>
                     </div>
@@ -33,15 +33,15 @@ export default function Navbar() {
                         <span>Atención: 8:00 AM – 6:00 PM</span>
                     </div>
                     <div className="flex space-x-2">
-                        <Link href="#" className="hover:text-white/80 transition-colors duration-300"><Twitter size={20} color="#FFFFFF" /></Link>
-                        <Link href="#" className="hover:text-white/80 transition-colors duration-300"><Instagram size={20} color="#FFFFFF" /></Link>
-                        <Link href="#" className="hover:text-white/80 transition-colors duration-300"><Youtube size={20} color="#FFFFFF" /></Link>
+                        <Link href="#" className="hover:text-white/80 transition-colors duration-300 transform hover:scale-105 transition-transform duration-300"><Twitter size={20} color="#FFFFFF" /></Link>
+                        <Link href="#" className="hover:text-white/80 transition-colors duration-300 transform hover:scale-105 transition-transform duration-300"><Instagram size={20} color="#FFFFFF" /></Link>
+                        <Link href="#" className="hover:text-white/80 transition-colors duration-300 transform hover:scale-105 transition-transform duration-300"><Youtube size={20} color="#FFFFFF" /></Link>
                     </div>
                 </div>
             </div>
 
             {/* Barra de navegación principal */}
-            <nav className={`bg-[#22C55E] backdrop-blur-sm p-4 text-black border-b border-gray-200 shadow-sm transition-all duration-300 ${DMSans.className}`}>
+            <nav className={`bg-[#22C55E] backdrop-blur-sm p-4 text-black border-b border-gray-300 shadow-sm transition-all duration-300 ${DMSans.className}`}>
                 <div className="max-w-[1400px] mx-auto px-8 flex justify-between items-center">
                     {/* Logo */}
                     <Link href="/" className="transform hover:scale-105 transition-transform duration-300">
@@ -80,7 +80,7 @@ export default function Navbar() {
                     {/* Selector de idioma */}
                     <div className="text-sm font-medium pr-4 flex items-center space-x-2">
                         <Link href="/" className="text-blue-600 hover:text-blue-700 transition-colors duration-300">ESP</Link>
-                        <span className="text-gray-300">|</span>
+                        <span className="text-gray-400">|</span>
                         <Link href="/en" className="text-gray-600 hover:text-blue-600 transition-colors duration-300">ENG</Link>
                     </div>
                 </div>
