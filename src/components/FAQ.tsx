@@ -28,12 +28,12 @@ const faqs = [
         answer: "Nuestro equipo técnico te guiará en todo el proceso de implementación. Incluye capacitación inicial, configuración del sistema y soporte continuo para asegurar una transición sin problemas."
     },
     {
-        question: "¿Es seguro mi data?",
+        question: "¿Mis datos estan seguros?",
         answer: "Sí, utilizamos encriptación de última generación y realizamos copias de seguridad diarias. Cumplimos con los estándares de seguridad más altos y regulaciones de protección de datos."
     },
     {
         question: "¿Qué métodos de pago aceptan?",
-        answer: "Aceptamos todas las tarjetas de crédito principales, transferencias bancarias y PayPal. Para el plan Empresarial, también ofrecemos facturación mensual o anual."
+        answer: "Aceptamos todas las tarjetas de crédito principales, transferencias bancarias, PayPal, Plin, Yape, PagoFacil, etc. Para el plan Empresarial, también ofrecemos facturación mensual o anual."
     }
 ];
 

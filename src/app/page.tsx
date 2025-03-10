@@ -15,7 +15,6 @@ import ChatBot from "@/components/ChatBot";
 import Team from "@/components/Team";
 import Technologies from "@/components/Technologies";
 import Comparison from "@/components/Comparison";
-
 export default function Home() {
   return (
     <div>
@@ -30,7 +29,6 @@ export default function Home() {
         <Demo />
         <Technologies />
         <FAQ />
-        
         <Team />
         <Contact />
       </main>
