@@ -41,7 +41,7 @@ const ChatBot: React.FC = () => {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setIsOpen(true)}
-                className="fixed bottom-6 right-6 bg-[#22C55E] text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-shadow z-50"
+                className="fixed bottom-6 right-6 bg-[#22C55E] text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-shadow z-50 hover:cursor-pointer"
             >
                 <FaComments className="text-2xl" />
             </motion.button>
@@ -63,7 +63,7 @@ const ChatBot: React.FC = () => {
                             </div>
                             <button
                                 onClick={() => setIsOpen(false)}
-                                className="text-white hover:text-gray-200 transition-colors"
+                                className="text-white hover:text-gray-200 transition-colors hover:cursor-pointer"
                             >
                                 <FaTimes />
                             </button>
@@ -103,7 +103,7 @@ const ChatBot: React.FC = () => {
                                 />
                                 <button
                                     type="submit"
-                                    className="bg-[#22C55E] text-white p-2 rounded-lg hover:bg-[#16A34A] transition-colors"
+                                    className="bg-[#22C55E] text-white p-2 rounded-lg hover:bg-[#16A34A] transition-colors hover:cursor-pointer"    
                                 >
                                     <FaPaperPlane />
                                 </button>
