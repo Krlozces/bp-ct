@@ -149,7 +149,7 @@ const Demo: React.FC = () => {
                         </div>
 
                         <div className="pt-4">
-                            <button className="inline-flex items-center gap-2 bg-[#22C55E] text-white px-6 py-3 rounded-lg hover:bg-[#16A34A] transition-colors font-semibold">
+                            <button className="inline-flex items-center gap-2 bg-[#22C55E] text-white px-6 py-3 rounded-lg hover:bg-[#16A34A] transition-colors font-semibold hover:cursor-pointer">
                                 Solicitar Demo Personalizada
                                 <FaArrowRight />
                             </button>

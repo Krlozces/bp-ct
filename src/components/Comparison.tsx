@@ -144,7 +144,7 @@ const Comparison: React.FC = () => {
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="mt-8 w-full py-3 rounded-lg font-semibold text-white transition-colors"
+                                className="mt-8 w-full py-3 rounded-lg font-semibold text-white transition-colors hover:cursor-pointer"
                                 style={{ backgroundColor: plan.color }}
                             >
                                 Elegir Plan
