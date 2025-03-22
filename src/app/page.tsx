@@ -23,14 +23,22 @@ export default function Home() {
         <Navbar />
         <Hero />
         <Features />
-        <Solutions />
-        <Testimonials />
+        <section id="services">
+          <Solutions />
+        </section>
+        <section id="clients">
+          <Testimonials />
+        </section>
         <Comparison />
         <Demo />
         <Technologies />
         <FAQ />
-        <Team />
-        <Contact />
+        <section id="about">
+          <Team />
+        </section>
+        <section id="contact">
+          <Contact />
+        </section>
       </main>
       <Footer />
       <ChatBot />
