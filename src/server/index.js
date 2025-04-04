@@ -1,16 +1,12 @@
 const express = require('express');
 const cors = require('cors');
-const { sendEmail } = require('./config/email');
-require('dotenv').config();
-
 const app = express();
 
 // Configuración de CORS más permisiva para desarrollo
 app.use(cors({
-    origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
+    origin: '*',
     methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type'],
-    credentials: true
+    allowedHeaders: ['Content-Type']
 }));
 
 app.use(express.json());
@@ -18,8 +14,6 @@ app.use(express.json());
 // Middleware para logging
 app.use((req, res, next) => {
     console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
-    console.log('Headers:', req.headers);
-    console.log('Body:', req.body);
     next();
 });
 
@@ -95,47 +89,11 @@ app.get('/api/health', (req, res) => {
     res.json({ status: 'OK', timestamp: new Date().toISOString() });
 });
 
-// Endpoint para el formulario de contacto
-app.post('/api/contact', async (req, res) => {
-    try {
-        console.log('Datos del formulario recibidos:', req.body);
-        const formData = req.body;
-
-        // Validación básica
-        if (!formData.name || !formData.email || !formData.message) {
-            console.log('Validación fallida:', { formData });
-            return res.status(400).json({
-                success: false,
-                message: 'Por favor, completa todos los campos requeridos'
-            });
-        }
-
-        console.log('Enviando email...');
-        // Enviar email
-        await sendEmail(formData);
-        console.log('Email enviado correctamente');
-
-        res.json({
-            success: true,
-            message: 'Mensaje enviado correctamente'
-        });
-    } catch (error) {
-        console.error('Error en el endpoint de contacto:', error);
-        res.status(500).json({
-            success: false,
-            message: 'Error al enviar el mensaje: ' + error.message
-        });
-    }
-});
-
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
     console.log('Endpoints disponibles:');
     console.log('- POST /api/chat');
     console.log('- GET /api/health');
-    console.log('- POST /api/contact');
-    console.log('Variables de entorno:');
-    console.log('- EMAIL_USER:', process.env.EMAIL_USER ? 'Configurado' : 'No configurado');
-    console.log('- EMAIL_PASS:', process.env.EMAIL_PASS ? 'Configurado' : 'No configurado');
 }); 
+

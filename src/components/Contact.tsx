@@ -2,13 +2,19 @@
 
 import { motion } from "framer-motion";
 import { DM_Sans } from "next/font/google";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import emailjs from '@emailjs/browser';
 
 const DMSans = DM_Sans({
     weight: ["900", "800", "700", "600"],
     subsets: ["latin"],
 });
+
+// Configuración de EmailJS
+const EMAILJS_SERVICE_ID = "service_25nl6jv"; // Reemplaza con tu Service ID
+const EMAILJS_TEMPLATE_ID = "template_g64gspl"; // Reemplaza con tu Template ID
+const EMAILJS_PUBLIC_KEY = "Y2uxnwj6gmN7DpseV"; // Reemplaza XXXXX con el resto de tu Public Key
 
 const Contact: React.FC = () => {
     const [formData, setFormData] = useState({
@@ -20,10 +26,66 @@ const Contact: React.FC = () => {
         subject: "general"
     });
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const [status, setStatus] = useState<{
+        type: 'success' | 'error' | null;
+        message: string;
+    }>({
+        type: null,
+        message: ''
+    });
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    useEffect(() => {
+        // Inicializar EmailJS
+        emailjs.init(EMAILJS_PUBLIC_KEY);
+    }, []);
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Aquí iría la lógica para enviar el formulario
-        console.log(formData);
+        setIsSubmitting(true);
+        setStatus({ type: null, message: '' });
+
+        try {
+            const result = await emailjs.send(
+                EMAILJS_SERVICE_ID,
+                EMAILJS_TEMPLATE_ID,
+                {
+                    from_name: formData.name,
+                    from_email: formData.email,
+                    phone: formData.phone,
+                    company: formData.company,
+                    subject: formData.subject,
+                    message: formData.message,
+                }
+            );
+
+            if (result.text === 'OK') {
+                setStatus({
+                    type: 'success',
+                    message: '¡Mensaje enviado correctamente! Nos pondremos en contacto contigo pronto.'
+                });
+                // Limpiar el formulario
+                setFormData({
+                    name: "",
+                    email: "",
+                    phone: "",
+                    company: "",
+                    message: "",
+                    subject: "general"
+                });
+            } else {
+                throw new Error('Error al enviar el mensaje');
+            }
+        } catch (error) {
+            console.error('Error al enviar el formulario:', error);
+            setStatus({
+                type: 'error',
+                message: 'Error al enviar el mensaje. Por favor, intenta nuevamente más tarde.'
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -110,6 +172,13 @@ const Contact: React.FC = () => {
                         transition={{ duration: 0.6 }}
                         className="bg-gray-50 p-8 rounded-xl"
                     >
+                        {status.type && (
+                            <div className={`mb-6 p-4 rounded-lg ${
+                                status.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
+                            }`}>
+                                {status.message}
+                            </div>
+                        )}
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div>
                                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
@@ -123,6 +192,7 @@ const Contact: React.FC = () => {
                                     onChange={handleChange}
                                     className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#22C55E] focus:border-transparent"
                                     required
+                                    disabled={isSubmitting}
                                 />
                             </div>
 
@@ -138,6 +208,7 @@ const Contact: React.FC = () => {
                                     onChange={handleChange}
                                     className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#22C55E] focus:border-transparent"
                                     required
+                                    disabled={isSubmitting}
                                 />
                             </div>
 
@@ -152,6 +223,7 @@ const Contact: React.FC = () => {
                                     value={formData.phone}
                                     onChange={handleChange}
                                     className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#22C55E] focus:border-transparent"
+                                    disabled={isSubmitting}
                                 />
                             </div>
 
@@ -166,6 +238,7 @@ const Contact: React.FC = () => {
                                     value={formData.company}
                                     onChange={handleChange}
                                     className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#22C55E] focus:border-transparent"
+                                    disabled={isSubmitting}
                                 />
                             </div>
 
@@ -179,6 +252,7 @@ const Contact: React.FC = () => {
                                     value={formData.subject}
                                     onChange={handleChange}
                                     className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#22C55E] focus:border-transparent"
+                                    disabled={isSubmitting}
                                 >
                                     <option value="general">Consulta General</option>
                                     <option value="sales">Ventas</option>
@@ -200,14 +274,18 @@ const Contact: React.FC = () => {
                                     rows={4}
                                     className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#22C55E] focus:border-transparent"
                                     required
+                                    disabled={isSubmitting}
                                 ></textarea>
                             </div>
 
                             <button
                                 type="submit"
-                                className="w-full bg-[#22C55E] text-white py-3 rounded-lg hover:bg-[#16A34A] transition-colors font-semibold hover:cursor-pointer"
+                                className={`w-full bg-[#22C55E] text-white py-3 rounded-lg hover:bg-[#16A34A] transition-colors font-semibold ${
+                                    isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                                }`}
+                                disabled={isSubmitting}
                             >
-                                Enviar Mensaje
+                                {isSubmitting ? 'Enviando...' : 'Enviar Mensaje'}
                             </button>
                         </form>
                     </motion.div>

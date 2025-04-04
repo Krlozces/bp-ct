@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@deemlol/next-icons": "^0.1.9",
+    "@emailjs/browser": "^4.4.1",
     "@next/font": "^14.2.15",
     "framer-motion": "^12.4.11",
     "next": "^15.2.1",
