@@ -39,7 +39,7 @@ const team = [
     },
     {
         name: "Piero Maza",
-        role: "Desarrollador Senior",
+        role: "Especialista en Cybersecurity",
         image: team3,
         bio: "Especialista en desarrollo frontend y experiencia de usuario.",
         social: {

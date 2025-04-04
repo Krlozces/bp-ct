@@ -2,34 +2,76 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { FaComments, FaTimes, FaPaperPlane, FaRobot } from "react-icons/fa";
+import { FaComments, FaTimes, FaPaperPlane, FaRobot, FaWhatsapp } from "react-icons/fa";
+
+interface Message {
+    type: "user" | "bot";
+    content: string;
+    isAction?: boolean;
+}
 
 const ChatBot: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [message, setMessage] = useState("");
-    const [messages, setMessages] = useState([
+    const [messages, setMessages] = useState<Message[]>([
         {
             type: "bot",
             content: "¡Hola! Soy el asistente virtual de PetuCode. ¿En qué puedo ayudarte hoy?"
         }
     ]);
+    const [isLoading, setIsLoading] = useState(false);
 
-    const handleSendMessage = (e: React.FormEvent) => {
+    const handleSendMessage = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!message.trim()) return;
 
         // Agregar mensaje del usuario
         setMessages(prev => [...prev, { type: "user", content: message }]);
+        setIsLoading(true);
         
-        // Simular respuesta del bot
-        setTimeout(() => {
+        try {
+            console.log('Enviando mensaje al servidor...');
+            const response = await fetch('http://localhost:3001/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message }),
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error del servidor: ${response.status}`);
+            }
+
+            const data = await response.json();
+            console.log('Respuesta recibida:', data);
+            
             setMessages(prev => [...prev, {
                 type: "bot",
-                content: "Gracias por tu mensaje. Nuestro equipo se pondrá en contacto contigo pronto."
+                content: data.response
             }]);
-        }, 1000);
 
+            // Agregar botón de WhatsApp después de la respuesta
+            setMessages(prev => [...prev, {
+                type: "bot",
+                content: "¿Quieres contactarnos por WhatsApp?",
+                isAction: true
+            }]);
+        } catch (error) {
+            console.error('Error completo:', error);
+            setMessages(prev => [...prev, {
+                type: "bot",
+                content: `Lo siento, hubo un error al conectar con el servidor. Por favor, asegúrate de que el servidor esté corriendo en http://localhost:3001`
+            }]);
+        }
+
+        setIsLoading(false);
         setMessage("");
+    };
+
+    const handleWhatsAppClick = () => {
+        
+        window.open('https://wa.me/+51976217463','_blank');
     };
 
     return (
@@ -78,17 +120,34 @@ const ChatBot: React.FC = () => {
                                     animate={{ opacity: 1, y: 0 }}
                                     className={`flex ${msg.type === "user" ? "justify-end" : "justify-start"}`}
                                 >
-                                    <div
-                                        className={`max-w-[80%] rounded-lg p-3 ${
-                                            msg.type === "user"
-                                                ? "bg-[#22C55E] text-white"
-                                                : "bg-gray-100 text-gray-800"
-                                        }`}
-                                    >
-                                        {msg.content}
-                                    </div>
+                                    {msg.isAction ? (
+                                        <button
+                                            onClick={handleWhatsAppClick}
+                                            className="bg-[#25D366] text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-[#128C7E] transition-colors"
+                                        >
+                                            <FaWhatsapp />
+                                            <span>Contactar por WhatsApp</span>
+                                        </button>
+                                    ) : (
+                                        <div
+                                            className={`max-w-[80%] rounded-lg p-3 ${
+                                                msg.type === "user"
+                                                    ? "bg-[#22C55E] text-white"
+                                                    : "bg-gray-100 text-gray-800"
+                                            }`}
+                                        >
+                                            {msg.content}
+                                        </div>
+                                    )}
                                 </motion.div>
                             ))}
+                            {isLoading && (
+                                <div className="flex justify-start">
+                                    <div className="bg-gray-100 text-gray-800 rounded-lg p-3">
+                                        Escribiendo...
+                                    </div>
+                                </div>
+                            )}
                         </div>
 
                         {/* Formulario de mensaje */}
@@ -100,10 +159,12 @@ const ChatBot: React.FC = () => {
                                     onChange={(e) => setMessage(e.target.value)}
                                     placeholder="Escribe tu mensaje..."
                                     className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#22C55E]"
+                                    disabled={isLoading}
                                 />
                                 <button
                                     type="submit"
-                                    className="bg-[#22C55E] text-white p-2 rounded-lg hover:bg-[#16A34A] transition-colors"
+                                    className="bg-[#22C55E] text-white p-2 rounded-lg hover:bg-[#16A34A] transition-colors disabled:opacity-50"
+                                    disabled={isLoading}
                                 >
                                     <FaPaperPlane />
                                 </button>
