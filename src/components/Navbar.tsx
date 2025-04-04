@@ -56,23 +56,23 @@ export default function Navbar() {
                     
                     {/* Menú de navegación - Desktop */}
                     <div className="hidden md:flex space-x-8 text-m font-extrabold">
-                        <Link href="/about" className="relative group">
+                        <Link href="#home" className="relative group">
                             <span className="hover:text-blue-600 transition-colors duration-300">INICIO</span>
                             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
                         </Link>
                         <div className="relative group">
-                            <Link href="/services" className="hover:text-blue-600 transition-colors duration-300">SERVICIOS</Link>
+                            <Link href="#services" className="hover:text-blue-600 transition-colors duration-300">SERVICIOS</Link>
                             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
                         </div>
-                        <Link href="/clients" className="relative group">
+                        <Link href="#about" className="relative group">
                             <span className="hover:text-blue-600 transition-colors duration-300">NOSOTROS</span>
                             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
                         </Link>
-                        <Link href="/insight" className="relative group">
+                        <Link href="#clients" className="relative group">
                             <span className="hover:text-blue-600 transition-colors duration-300">CLIENTES</span>
                             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
                         </Link>
-                        <Link href="/contact" className="relative group">
+                        <Link href="#contact" className="relative group">
                             <span className="hover:text-blue-600 transition-colors duration-300">CONTÁCTENOS</span>
                             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
                         </Link>
@@ -97,11 +97,11 @@ export default function Navbar() {
                 {/* Menú móvil */}
                 <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
                     <div className="px-8 py-4 space-y-4 bg-[#22C55E]">
-                        <Link href="/about" className="block text-white hover:text-gray-200 transition-colors">INICIO</Link>
-                        <Link href="/services" className="block text-white hover:text-gray-200 transition-colors">SERVICIOS</Link>
-                        <Link href="/clients" className="block text-white hover:text-gray-200 transition-colors">NOSOTROS</Link>
-                        <Link href="/insight" className="block text-white hover:text-gray-200 transition-colors">CLIENTES</Link>
-                        <Link href="/contact" className="block text-white hover:text-gray-200 transition-colors">CONTÁCTENOS</Link>
+                        <Link href="#home" className="block text-white hover:text-gray-200 transition-colors">INICIO</Link>
+                        <Link href="#services" className="block text-white hover:text-gray-200 transition-colors">SERVICIOS</Link>
+                        <Link href="#about" className="block text-white hover:text-gray-200 transition-colors">NOSOTROS</Link>
+                        <Link href="#clients" className="block text-white hover:text-gray-200 transition-colors">CLIENTES</Link>
+                        <Link href="#contact" className="block text-white hover:text-gray-200 transition-colors">CONTÁCTENOS</Link>
                         <div className="flex space-x-4 pt-4">
                             <Link href="/" className="text-white hover:text-gray-200 transition-colors">ESP</Link>
                             <span className="text-white">|</span>

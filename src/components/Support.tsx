@@ -122,7 +122,7 @@ const Support: React.FC = () => {
                         Nuestro equipo de soporte está listo para ayudarte. 
                         Contacta con nosotros a través de cualquiera de nuestros canales.
                     </p>
-                    <button className="inline-flex items-center gap-2 bg-[#22C55E] text-white px-6 py-3 rounded-lg hover:bg-[#16A34A] transition-colors font-semibold">
+                    <button className="inline-flex items-center gap-2 bg-[#22C55E] text-white px-6 py-3 rounded-lg hover:bg-[#16A34A] transition-colors font-semibold hover:cursor-pointer">
                         Contactar Soporte
                         <FaHeadset />
                     </button>

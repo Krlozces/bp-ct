@@ -114,7 +114,7 @@ const FAQ: React.FC = () => {
                     <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
                         Nuestro equipo de soporte está aquí para ayudarte. Contáctanos y te responderemos en menos de 24 horas.
                     </p>
-                    <button className="bg-[#22C55E] text-white px-8 py-3 rounded-lg hover:bg-[#16A34A] transition-colors font-semibold">
+                    <button className="bg-[#22C55E] text-white px-8 py-3 rounded-lg hover:bg-[#16A34A] transition-colors font-semibold hover:cursor-pointer">
                         Contactar Soporte
                     </button>
                 </motion.div>
