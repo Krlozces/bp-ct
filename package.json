@@ -13,6 +13,7 @@
     "@emailjs/browser": "^4.4.1",
     "@next/font": "^14.2.15",
     "framer-motion": "^12.4.11",
+    "lottie-react": "^2.4.1",
     "next": "^15.2.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
