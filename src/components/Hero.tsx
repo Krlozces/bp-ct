@@ -220,7 +220,6 @@ const Hero: React.FC = () => {
           <motion.h1
             variants={itemVariants}
             className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight"
-            onMouseEnter={() => textEnter("FUTURO")}
             onMouseLeave={textLeave}
           >
             <span className="block">Transformamos</span>
@@ -289,12 +288,11 @@ const Hero: React.FC = () => {
         <motion.div
           variants={codeBlockVariants}
           className="lg:col-span-6 relative"
-          onMouseEnter={() => textEnter("TECNOLOGÍA")} 
           onMouseLeave={textLeave}
         >
-          <div className="relative rounded-xl overflow-hidden border border-indigo-500/20 shadow-2xl bg-gradient-to-br from-indigo-900/40 to-blue-900/40 backdrop-blur-sm p-4">
+          <div className="relative rounded-xl overflow-hidden  p-4">
             {/* Contenedor de la animación Lottie */}
-            <div className="relative h-[400px] w-full overflow-hidden">
+            <div className="relative h-[700px] w-full overflow-hidden">
               <Lottie
                 loop={true}
                 animationData={animationData}
@@ -310,9 +308,7 @@ const Hero: React.FC = () => {
             </div>
             
             {/* Efecto de brillo en los bordes */}
-            <div className="absolute inset-0 border border-indigo-500/20 rounded-xl pointer-events-none">
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-indigo-500/10 to-blue-500/10 rounded-xl blur-sm opacity-50"></div>
-            </div>
+            
           </div>
 
           {/* Elementos decorativos alrededor de la animación */}
@@ -322,12 +318,7 @@ const Hero: React.FC = () => {
           <div className="absolute top-1/4 -left-3 w-6 h-6 bg-blue-400/30 rounded-full blur-lg"></div>
           
           {/* Etiquetas flotantes */}
-          <div className="absolute top-4 right-4 px-3 py-1 bg-indigo-600/80 text-white text-xs font-mono rounded-full shadow-lg border border-indigo-400/30 backdrop-blur-sm">
-            Desarrollo Web & Móvil
-          </div>
-          <div className="absolute bottom-4 left-4 px-3 py-1 bg-blue-600/80 text-white text-xs font-mono rounded-full shadow-lg border border-blue-400/30 backdrop-blur-sm">
-            Soluciones Digitales
-          </div>
+          
         </motion.div>
       </motion.div>
 
