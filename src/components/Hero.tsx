@@ -187,7 +187,7 @@ const Hero: React.FC = () => {
       {/* Fondo con gradiente y partículas */}
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-950 via-indigo-900 to-blue-950">
         <div className="absolute inset-0 opacity-30">{renderParticles()}</div>
-        <div className="absolute inset-0 bg-[url('/pattern.svg')] opacity-5"></div>
+
       </div>
 
       {/* Malla de líneas de código */}
