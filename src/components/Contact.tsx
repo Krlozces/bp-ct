@@ -190,7 +190,7 @@ const Contact: React.FC = () => {
                                     name="name"
                                     value={formData.name}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#22C55E] focus:border-transparent"
+                                    className="w-full px-4 py-2 rounded-lg text-black border border-gray-300 focus:ring-2 focus:ring-[#22C55E] focus:border-transparent"
                                     required
                                     disabled={isSubmitting}
                                 />
@@ -206,7 +206,7 @@ const Contact: React.FC = () => {
                                     name="email"
                                     value={formData.email}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#22C55E] focus:border-transparent"
+                                    className="w-full px-4 py-2 rounded-lg text-black border border-gray-300 focus:ring-2 focus:ring-[#22C55E] focus:border-transparent"
                                     required
                                     disabled={isSubmitting}
                                 />
@@ -222,7 +222,7 @@ const Contact: React.FC = () => {
                                     name="phone"
                                     value={formData.phone}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#22C55E] focus:border-transparent"
+                                    className="w-full px-4 py-2 rounded-lg text-black border border-gray-300 focus:ring-2 focus:ring-[#22C55E] focus:border-transparent"
                                     disabled={isSubmitting}
                                 />
                             </div>
@@ -237,7 +237,7 @@ const Contact: React.FC = () => {
                                     name="company"
                                     value={formData.company}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#22C55E] focus:border-transparent"
+                                    className="w-full px-4 py-2 rounded-lg text-black border border-gray-300 focus:ring-2 focus:ring-[#22C55E] focus:border-transparent"
                                     disabled={isSubmitting}
                                 />
                             </div>
@@ -251,7 +251,7 @@ const Contact: React.FC = () => {
                                     name="subject"
                                     value={formData.subject}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#22C55E] focus:border-transparent"
+                                    className="w-full px-4 py-2 rounded-lg border text-black border-gray-300 focus:ring-2 focus:ring-[#22C55E] focus:border-transparent"
                                     disabled={isSubmitting}
                                 >
                                     <option value="general">Consulta General</option>
@@ -272,7 +272,7 @@ const Contact: React.FC = () => {
                                     value={formData.message}
                                     onChange={handleChange}
                                     rows={4}
-                                    className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#22C55E] focus:border-transparent"
+                                    className="w-full px-4 py-2 rounded-lg border text-black border-gray-300 focus:ring-2 focus:ring-[#22C55E] focus:border-transparent"
                                     required
                                     disabled={isSubmitting}
                                 ></textarea>
@@ -280,7 +280,7 @@ const Contact: React.FC = () => {
 
                             <button
                                 type="submit"
-                                className={`w-full bg-[#22C55E] text-white py-3 rounded-lg hover:bg-[#16A34A] transition-colors font-semibold ${
+                                className={`w-full bg-[#22C55E] text-white py-3 rounded-lg hover:bg-[#16A34A] transition-colors font-semibold cursor-pointer ${
                                     isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
                                 }`}
                                 disabled={isSubmitting}

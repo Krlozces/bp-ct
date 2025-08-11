@@ -38,7 +38,7 @@ export default function Solutions() {
                             "Retenciones y detracciones"
                         ]} 
                         description="Ideal para ferreterías, markets, distribuidoras, repuestos, empresas de transportes, lubricentros, droguerías y tiendas en general." 
-                        buttonText="Ver más" 
+                        buttonText="Más Información" 
                     />
                     <SolutionsCard 
                         icon={<TapsSvg />} 
@@ -50,7 +50,7 @@ export default function Solutions() {
                             "Cuentas por cobrar y cierre de caja"
                         ]} 
                         description="Exclusivo para estaciones de servicio, venta de combustible líquido o gas." 
-                        buttonText="Ver más" 
+                        buttonText="Más Información" 
                     />
                     <SolutionsCard 
                         icon={<BuildingSvg />} 
@@ -62,7 +62,7 @@ export default function Solutions() {
                             "Reportes financieros"
                         ]} 
                         description="Dirigido a inmobiliarias, constructoras o entidades que se dediquen al arrendamiento o compra y venta de inmuebles." 
-                        buttonText="Ver más" 
+                        buttonText="Más Información" 
                     />
                     <SolutionsCard 
                         icon={<HealthSvg />} 
@@ -74,7 +74,7 @@ export default function Solutions() {
                             "Historias y recetas en PDF"
                         ]} 
                         description="Ideal para clínicas, consultorios y centros médicos de salud, integración con productos de farmacia para recetas de los médicos." 
-                        buttonText="Ver más" 
+                        buttonText="Más Información" 
                     />
                     <SolutionsCard 
                         icon={<RestaurantSvg />} 
@@ -86,7 +86,7 @@ export default function Solutions() {
                             "Gestión de combos y promociones"
                         ]} 
                         description="Ideal para restaurantes, cafeterías, pollerías, cevicherías, comida rápida, bares, discotecas, karaokes." 
-                        buttonText="Ver más" 
+                        buttonText="Más Información" 
                     />
                     <SolutionsCard 
                         icon={<HotelSvg />} 
@@ -98,7 +98,7 @@ export default function Solutions() {
                             "Gestión de restaurante"
                         ]} 
                         description="Ideal para hoteles, hostales, albergues, hosterías, alojamientos, etc." 
-                        buttonText="Ver más" 
+                        buttonText="Más Información" 
                     />
                 </div>
             </div>
