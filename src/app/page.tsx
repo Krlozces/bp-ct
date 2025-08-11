@@ -7,12 +7,10 @@ import IntroTransition from "@/components/IntroTransition";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import Testimonials from "@/components/Testimonials";
-import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Demo from "@/components/Demo";
 import ChatBot from "@/components/ChatBot";
 import Team from "@/components/Team";
-import Technologies from "@/components/Technologies";
 import Comparison from "@/components/Comparison";
 
 export default function Home() {
@@ -41,8 +39,6 @@ export default function Home() {
             </section>
             <Comparison />
             <Demo />
-            <Technologies />
-            <FAQ />
             <section id="about">
               <Team />
             </section>
