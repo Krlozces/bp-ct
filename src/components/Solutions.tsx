@@ -1,11 +1,11 @@
-import Bulletpoint from "./icons/BulletpointSvg";
+
 import ShoppingCart from "./icons/ShoppingCartSvg";
 import RestaurantSvg from "./icons/RestaurantSvg";
 import TapsSvg from "./icons/TapsSvg";
 import HealthSvg from "./icons/HealthSvg";
 import BuildingSvg from "./icons/BuildingSvg";
 import HotelSvg from "./icons/HotelSvg";
-import Button from "./Button";
+
 import SolutionsCard from "./SolutionsCard";
 import { DM_Sans } from "next/font/google";
 

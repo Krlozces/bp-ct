@@ -1,5 +1,4 @@
 import Button from "./Button";
-import Bulletpoint from "./icons/BulletpointSvg";
 
 export default function SolutionsCard ({icon, title, items, description, buttonText}: {icon: React.ReactNode, title: string, items: string[], description: string, buttonText: string}) {
     return (

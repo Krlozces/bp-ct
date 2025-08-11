@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { DM_Sans } from "next/font/google";
 import { useState, useRef } from "react";
-import { FaPlay, FaPause, FaArrowRight, FaCheck, FaCode, FaRocket, FaShieldAlt, FaChartLine } from "react-icons/fa";
+import { FaPlay, FaPause, FaArrowRight, FaCode, FaRocket, FaShieldAlt, FaChartLine } from "react-icons/fa";
 
 const DMSans = DM_Sans({
     weight: ["900", "800", "700", "600"],

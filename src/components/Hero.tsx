@@ -1,410 +1,158 @@
-"use client";
+import React from 'react';
 
-import React, { useEffect, useState, useRef } from "react";
-import { motion, useAnimation, useInView } from "framer-motion";
-import { DM_Sans } from "next/font/google";
-import Button from "./Button";
-import Lottie from "lottie-react";
-
-const DMSans = DM_Sans({
-  weight: ["700", "500", "400"],
-  subsets: ["latin"],
-});
-
-const Hero: React.FC = () => {
-  const [animationData, setAnimationData] = useState(null);
-
-  useEffect(() => {
-    fetch('/animationHero.json')
-      .then(response => response.json())
-      .then(data => setAnimationData(data))
-      .catch(error => console.error('Error loading animation:', error));
-  }, []);
-
-  const controls = useAnimation();
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [cursorText, setCursorText] = useState("");
-  const [cursorVariant, setCursorVariant] = useState("default");
-  const [isHovering, setIsHovering] = useState(false);
-  const [activeParticles, setActiveParticles] = useState<number[]>([]);
-
-  // Iniciar animaciones cuando el componente está en vista
-  useEffect(() => {
-    if (isInView) {
-      controls.start("visible");
-    }
-  }, [controls, isInView]);
-
-  // Seguimiento del cursor para efectos interactivos
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
-
-  // Activar partículas aleatorias periódicamente
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const randomParticles = Array.from({ length: 5 }, () =>
-        Math.floor(Math.random() * 30)
-      );
-      setActiveParticles(randomParticles);
-    }, 2000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  // Variantes para el cursor personalizado
-  const cursorVariants = {
-    default: {
-      x: mousePosition.x - 16,
-      y: mousePosition.y - 16,
-      height: 32,
-      width: 32,
-      backgroundColor: "rgba(79, 70, 229, 0.1)",
-      border: "1px solid rgba(79, 70, 229, 0.3)",
-    },
-    hover: {
-      x: mousePosition.x - 40,
-      y: mousePosition.y - 40,
-      height: 80,
-      width: 80,
-      backgroundColor: "rgba(79, 70, 229, 0.2)",
-      border: "1px solid rgba(79, 70, 229, 0.5)",
-      mixBlendMode: "difference",
-    },
-    text: {
-      x: mousePosition.x - 75,
-      y: mousePosition.y - 75,
-      height: 150,
-      width: 150,
-      backgroundColor: "transparent",
-      border: "2px solid rgba(79, 70, 229, 0.8)",
-      mixBlendMode: "difference",
-    },
-  };
-
-  // Funciones para interactividad del cursor
-  const textEnter = (text: string) => {
-    setCursorText(text);
-    setCursorVariant("text");
-  };
-
-  const textLeave = () => {
-    setCursorText("");
-    setCursorVariant("default");
-  };
-
-  const buttonEnter = () => {
-    setCursorVariant("hover");
-    setIsHovering(true);
-  };
-
-  const buttonLeave = () => {
-    setCursorVariant("default");
-    setIsHovering(false);
-  };
-
-  // Generar partículas para el fondo
-  const renderParticles = () => {
-    return Array.from({ length: 30 }).map((_, index) => {
-      const size = Math.random() * 6 + 2;
-      const isActive = activeParticles.includes(index);
-      const top = `${Math.random() * 100}%`;
-      const left = `${Math.random() * 100}%`;
-      const delay = Math.random() * 5;
-
-      return (
-        <div
-          key={index}
-          className={`absolute rounded-full transition-all duration-1000 ${isActive ? "scale-150 opacity-100" : "opacity-40"}`}
-          style={{
-            top,
-            left,
-            width: `${size}px`,
-            height: `${size}px`,
-            backgroundColor: index % 3 === 0 ? "#4f46e5" : index % 3 === 1 ? "#60a5fa" : "#818cf8",
-            animationDelay: `${delay}s`,
-          }}
-        />
-      );
-    });
-  };
-
-  // Variantes para animaciones
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
-    },
-  };
-
-  const codeBlockVariants = {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 1,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    },
-  };
-
+const Hero = () => {
   return (
-    <section
-      id="home"
-      ref={ref}
-      className={`relative min-h-screen flex items-center justify-center overflow-hidden ${DMSans.className}`}
-    >
-      {/* Cursor personalizado */}
-      <motion.div
-        className="custom-cursor fixed top-0 left-0 rounded-full pointer-events-none z-50 flex items-center justify-center text-white font-bold text-sm"
-        variants={cursorVariants}
-        animate={cursorVariant}
-      >
-        {cursorText && <span>{cursorText}</span>}
-      </motion.div>
-
-      {/* Fondo con gradiente y partículas */}
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-950 via-indigo-900 to-blue-950">
-        <div className="absolute inset-0 opacity-30">{renderParticles()}</div>
-
-      </div>
-
-      {/* Malla de líneas de código */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="code-grid w-full h-full opacity-10"></div>
+    <section className="relative bg-gradient-to-br from-gray-900 via-purple-900 to-blue-900 text-white min-h-screen flex items-center overflow-hidden">
+      {/* Efecto de partículas dinámicas */}
+      <div className="absolute inset-0 overflow-hidden z-0">
+        {[...Array(30)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full bg-blue-400 opacity-[0.15]"
+            style={{
+              width: `${Math.random() * 10 + 2}px`,
+              height: `${Math.random() * 10 + 2}px`,
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              animation: `float ${Math.random() * 15 + 10}s linear infinite`,
+              animationDelay: `${Math.random() * 5}s`
+            }}
+          />
+        ))}
       </div>
 
       {/* Contenido principal */}
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate={controls}
-        className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
-      >
-        {/* Columna de texto */}
-        <motion.div className="lg:col-span-6 text-white">
-          <motion.div
-            variants={itemVariants}
-            className="glitch-wrapper mb-6"
-            onMouseEnter={() => textEnter("INNOVACIÓN")}
-            onMouseLeave={textLeave}
-          >
-            <h2 className="glitch text-indigo-300 text-xl font-mono tracking-wider">
-              <span aria-hidden="true">DESARROLLO DE SOFTWARE</span>
-              DESARROLLO DE SOFTWARE
-              <span aria-hidden="true">DESARROLLO DE SOFTWARE</span>
-            </h2>
-          </motion.div>
+      <div className="container mx-auto px-4 relative z-10 max-w-7xl">
+        <div className="flex flex-col lg:flex-row items-center gap-12">
+          {/* Texto principal */}
+          <div className="w-full lg:w-1/2">
+            <div className="max-w-2xl mx-auto lg:mx-0">
+              <div className="inline-block bg-blue-700/30 border border-blue-400/30 text-blue-200 px-4 py-2 rounded-full text-sm mb-6">
+                Innovación Digital
+              </div>
 
-          <motion.h1
-            variants={itemVariants}
-            className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight"
-            onMouseLeave={textLeave}
-          >
-            <span className="block">Transformamos</span>
-            <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-blue-400 to-indigo-300">
-              Ideas en Realidad Digital
-            </span>
-          </motion.h1>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-purple-300">
+                  Soluciones
+                </span>{' '}
+                <br />
+                <span className="relative inline-block">
+                  Tecnológicas
+                  <span className="absolute -bottom-2 left-0 h-1 w-full bg-gradient-to-r from-blue-400 to-purple-500 rounded-full"></span>
+                </span>
+              </h1>
 
-          <motion.p
-            variants={itemVariants}
-            className="text-lg md:text-xl text-indigo-100 mb-8 max-w-2xl"
-          >
-            No solo desarrollamos software, creamos experiencias digitales que
-            <span className="relative inline-block mx-1">
-              <span className="relative z-10 font-bold">revolucionan</span>
-              <span className="absolute bottom-0 left-0 w-full h-2 bg-indigo-500/30 rounded-sm -z-0"></span>
-            </span>
-            la forma en que interactúas con la tecnología.
-          </motion.p>
+              <p className="text-lg sm:text-xl text-blue-100 mb-10 max-w-lg">
+                Creamos software empresarial que optimiza procesos, aumenta eficiencia y proporciona ventajas competitivas.
+              </p>
 
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-wrap gap-4 mb-12"
-          >
-            <div
-              onMouseEnter={buttonEnter}
-              onMouseLeave={buttonLeave}
-              className="relative"
-            >
-              <Button className="relative z-10 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 rounded-xl shadow-xl hover:translate-y-[-2px] transition-all duration-300 text-lg overflow-hidden group">
-                <span className="relative z-10">Inicia Tu Proyecto</span>
-                <span className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-              </Button>
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-xl blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+              <div className="flex flex-col sm:flex-row gap-4 mb-16">
+                <a
+                  href="#contacto"
+                  className="relative overflow-hidden group bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-400 hover:to-purple-400 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/30"
+                >
+                  <span className="relative z-10">Contactar Ahora</span>
+                  <span className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                </a>
+
+                <a
+                  href="#portafolio"
+                  className="relative overflow-hidden group border-2 border-blue-300/50 hover:border-blue-300 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20"
+                >
+                  <span className="relative z-10">Ver Proyectos</span>
+                  <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                </a>
+              </div>
+
+              <div className="flex flex-wrap gap-8">
+                <div className="flex items-center gap-3">
+                  <div className="bg-blue-700/30 p-3 rounded-full backdrop-blur-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="font-bold">Seguridad</div>
+                    <div className="text-sm text-blue-200/80">Protegemos tus datos</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <div className="bg-purple-700/30 p-3 rounded-full backdrop-blur-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-purple-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="font-bold">Rendimiento</div>
+                    <div className="text-sm text-blue-200/80">Soluciones optimizadas</div>
+                  </div>
+                </div>
+              </div>
             </div>
-
-            <div
-              onMouseEnter={buttonEnter}
-              onMouseLeave={buttonLeave}
-              className="relative"
-            >
-              <Button className="relative z-10 bg-transparent border-2 border-indigo-400/50 text-indigo-200 font-bold py-4 px-8 rounded-xl shadow-lg hover:border-indigo-300 hover:text-white hover:translate-y-[-2px] transition-all duration-300 text-lg overflow-hidden group">
-                <span className="relative z-10">Explora Soluciones</span>
-                <span className="absolute inset-0 bg-indigo-800/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-              </Button>
-            </div>
-          </motion.div>
-
-          {/* Indicadores de tecnología */}
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-wrap gap-3"
-          >
-            {["React", "Node.js", "Python", "AWS", "AI"].map((tech, index) => (
-              <span
-                key={index}
-                className="px-3 py-1 text-xs font-mono rounded-full bg-indigo-900/50 text-indigo-300 border border-indigo-700/50"
-              >
-                {tech}
-              </span>
-            ))}
-          </motion.div>
-        </motion.div>
-
-        {/* Animación Lottie */}
-        <motion.div
-          variants={codeBlockVariants}
-          className="lg:col-span-6 relative"
-          onMouseLeave={textLeave}
-        >
-          <div className="relative rounded-xl overflow-hidden  p-4">
-            {/* Contenedor de la animación Lottie */}
-            <div className="relative h-[700px] w-full overflow-hidden">
-              <Lottie
-                loop={true}
-                animationData={animationData}
-                autoplay={true}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  maxWidth: '600px',
-                  maxHeight: '600px',
-                  pointerEvents: 'none',
-                }}
-              />
-            </div>
-            
-            {/* Efecto de brillo en los bordes */}
-            
           </div>
 
-          {/* Elementos decorativos alrededor de la animación */}
-          <div className="absolute -top-5 -left-5 w-10 h-10 bg-indigo-500/20 rounded-full blur-xl"></div>
-          <div className="absolute -bottom-8 -right-8 w-16 h-16 bg-blue-500/20 rounded-full blur-xl"></div>
-          <div className="absolute top-1/2 -right-4 w-8 h-8 bg-indigo-400/30 rounded-full blur-lg"></div>
-          <div className="absolute top-1/4 -left-3 w-6 h-6 bg-blue-400/30 rounded-full blur-lg"></div>
-          
-          {/* Etiquetas flotantes */}
-          
-        </motion.div>
-      </motion.div>
+          {/* Imagen con efecto flotante */}
+          <div className="w-full lg:w-1/2 flex justify-center relative">
+            <div className="relative w-full max-w-xl">
+              {/* Efecto de halo */}
+              <div className="absolute -inset-4 bg-blue-500/10 rounded-3xl blur-xl animate-pulse"></div>
 
-      {/* Líneas de conexión animadas */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="connection-lines w-full h-full opacity-20"></div>
+              {/* Contenedor de imagen */}
+              <div className="relative rounded-2xl overflow-hidden transform perspective-1000 rotate-y-6">
+                <img
+                  src="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80"
+                  alt="Equipo de desarrollo colaborando"
+                  className="w-full h-auto object-cover rounded-xl shadow-2xl"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 via-transparent to-transparent"></div>
+              </div>
+
+              {/* Tarjeta flotante */}
+              <div className="absolute -bottom-6 -right-6 bg-white/90 backdrop-blur-sm p-5 rounded-xl shadow-lg w-64 border border-white/20">
+                <div className="flex items-center mb-2">
+                  <div className="h-10 w-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold mr-3">
+                    100+
+                  </div>
+                  <div className="text-sm font-bold text-gray-800">Proyectos</div>
+                </div>
+                <p className="text-gray-700 text-sm">
+                  Desarrollados con metodologías ágiles
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Estilos CSS para efectos especiales */}
+      {/* Onda de transición */}
+      <div className="absolute -bottom-10 left-0 w-full overflow-hidden" style={{ transform: 'scaleY(-1) translateY(40px)' }}>
+        <svg
+          viewBox="0 0 1200 120"
+          preserveAspectRatio="none"
+          className="fill-current text-white w-full h-16"
+        >
+          <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" className="fill-current text-blue-900/80"></path>
+          <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" className="fill-current text-blue-900/60"></path>
+          <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" className="fill-current text-white"></path>
+        </svg>
+      </div>
+
+
+      {/* Estilos para las animaciones */}
       <style jsx>{`
-        /* Efecto de glitch para texto */
-        .glitch-wrapper {
-          position: relative;
-          width: fit-content;
-        }
-        
-        .glitch {
-          position: relative;
-          color: white;
-        }
-        
-        .glitch > span {
-          position: absolute;
-          top: 0;
-          left: 0;
-        }
-        
-        .glitch > span:first-child {
-          animation: glitch 500ms infinite;
-          clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
-          transform: translate(-0.04em, -0.03em);
-          opacity: 0.75;
-        }
-        
-        .glitch > span:last-child {
-          animation: glitch 375ms infinite;
-          clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
-          transform: translate(0.04em, 0.03em);
-          opacity: 0.75;
-        }
-        
-        @keyframes glitch {
-          0% {
-            text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75), -0.05em -0.025em 0 rgba(0, 255, 0, 0.75), -0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
-          }
-          14% {
-            text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75), -0.05em -0.025em 0 rgba(0, 255, 0, 0.75), -0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
-          }
-          15% {
-            text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75), 0.025em 0.025em 0 rgba(0, 255, 0, 0.75), -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
-          }
-          49% {
-            text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75), 0.025em 0.025em 0 rgba(0, 255, 0, 0.75), -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
-          }
-          50% {
-            text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75), 0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 rgba(0, 0, 255, 0.75);
-          }
-          99% {
-            text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75), 0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 rgba(0, 0, 255, 0.75);
-          }
-          100% {
-            text-shadow: -0.025em 0 0 rgba(255, 0, 0, 0.75), -0.025em -0.025em 0 rgba(0, 255, 0, 0.75), -0.025em -0.05em 0 rgba(0, 0, 255, 0.75);
-          }
-        }
-        
-        /* Rejilla de código para el fondo */
-        .code-grid {
-          background-size: 50px 50px;
-          background-image: 
-            linear-gradient(to right, rgba(79, 70, 229, 0.1) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(79, 70, 229, 0.1) 1px, transparent 1px);
-        }
-        
-        /* Líneas de conexión */
-        .connection-lines {
-          background: 
-            radial-gradient(circle at 20% 35%, rgba(79, 70, 229, 0.2) 0%, transparent 50px),
-            radial-gradient(circle at 80% 20%, rgba(96, 165, 250, 0.2) 0%, transparent 50px),
-            radial-gradient(circle at 40% 80%, rgba(79, 70, 229, 0.2) 0%, transparent 50px),
-            radial-gradient(circle at 70% 60%, rgba(96, 165, 250, 0.2) 0%, transparent 50px);
-        }
-        
-        /* Animaciones para partículas */
         @keyframes float {
-          0%, 100% { transform: translateY(0) scale(1); }
-          50% { transform: translateY(-10px) scale(1.05); }
+          0% { transform: translateY(0) translateX(0); }
+          50% { transform: translateY(-50px) translateX(20px); }
+          100% { transform: translateY(0) translateX(0); }
+        }
+        
+        .perspective-1000 {
+          perspective: 1000px;
+        }
+        
+        .rotate-y-6 {
+          transform: rotateY(6deg);
         }
       `}</style>
     </section>

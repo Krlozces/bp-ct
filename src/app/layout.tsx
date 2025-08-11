@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PetuCode",
+  title: "CobalTech",
   description: "Empresa Peruana dedicada a la creación, implantación y comercialización de software de gestión empresarial, que cuenta con más de 10 años de experiencia en el rubro de sistemas empresariales.",
 };
 

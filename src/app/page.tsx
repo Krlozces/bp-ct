@@ -1,4 +1,5 @@
-import Image from "next/image";
+"use client";
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Solutions from "@/components/Solutions";
@@ -6,39 +7,50 @@ import IntroTransition from "@/components/IntroTransition";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import Testimonials from "@/components/Testimonials";
-import Pricing from "@/components/Pricing";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Demo from "@/components/Demo";
-import Support from "@/components/Support";
 import ChatBot from "@/components/ChatBot";
 import Team from "@/components/Team";
 import Technologies from "@/components/Technologies";
 import Comparison from "@/components/Comparison";
+
 export default function Home() {
+  // Estado para controlar cuándo mostrar el contenido
+  const [showContent, setShowContent] = useState(false);
+
   return (
     <div>
       <main>
-        <IntroTransition title="PetuCode SAC" /> {/*No se pq sale error, no se que hacer */}
-        <Navbar />
-        <Hero />
-        <Features />
-        <section id="services">
-          <Solutions />
-        </section>
-        <section id="clients">
-          <Testimonials />
-        </section>
-        <Comparison />
-        <Demo />
-        <Technologies />
-        <FAQ />
-        <section id="about">
-          <Team />
-        </section>
-        <section id="contact">
-          <Contact />
-        </section>
+        {/* Mostrar Intro solo si no se ha mostrado el contenido */}
+        {!showContent && (
+          <IntroTransition title="PetuCode SAC" setShowContent={setShowContent} />
+        )}
+
+        {/* El resto del contenido se muestra después */}
+        {showContent && (
+          <>
+            <Navbar />
+            <Hero />
+            <Features />
+            <section id="services">
+              <Solutions />
+            </section>
+            <section id="clients">
+              <Testimonials />
+            </section>
+            <Comparison />
+            <Demo />
+            <Technologies />
+            <FAQ />
+            <section id="about">
+              <Team />
+            </section>
+            <section id="contact">
+              <Contact />
+            </section>
+          </>
+        )}
       </main>
       <Footer />
       <ChatBot />
