@@ -22,7 +22,7 @@ export default function Home() {
       <main>
         {/* Mostrar Intro solo si no se ha mostrado el contenido */}
         {!showContent && (
-          <IntroTransition title="PetuCode SAC" setShowContent={setShowContent} />
+          <IntroTransition title="CobalTech" setShowContent={setShowContent} />
         )}
 
         {/* El resto del contenido se muestra después */}

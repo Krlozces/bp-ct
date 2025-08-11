@@ -127,7 +127,7 @@ const Testimonials: React.FC = () => {
                 </motion.div>
 
                 {/* Sección de CTA */}
-                <motion.div 
+                {/* <motion.div 
                     className="mt-20 text-center"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -143,7 +143,7 @@ const Testimonials: React.FC = () => {
                     <button className="bg-[#22C55E] text-white px-8 py-3 rounded-lg hover:bg-[#16A34A] transition-colors font-semibold hover:cursor-pointer">
                         Solicitar Demo
                     </button>
-                </motion.div>
+                </motion.div> */}
             </div>
         </section>
     );

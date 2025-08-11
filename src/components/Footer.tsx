@@ -142,7 +142,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-3 text-blue-100">
                 <FaMapMarkerAlt className="text-blue-300 mt-1 flex-shrink-0" />
-                <span>Av. Tecnológica 123, Lima, Perú</span>
+                <span>Av. Amautas , Chiclayo, Perú</span>
               </li>
               <li className="flex items-start gap-3 text-blue-100">
                 <FaClock className="text-blue-300 mt-1 flex-shrink-0" />
