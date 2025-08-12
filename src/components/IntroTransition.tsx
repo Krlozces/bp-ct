@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 
 interface IntroTransitionProps {
+  title: string;
   setShowContent: (value: boolean) => void;
   loadingMessage?: string;
   slogan?: string;

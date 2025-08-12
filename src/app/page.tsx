@@ -9,7 +9,6 @@ import Features from "@/components/Features";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Demo from "@/components/Demo";
-import ChatBot from "@/components/ChatBot";
 import Team from "@/components/Team";
 import Comparison from "@/components/Comparison";
 
@@ -49,7 +48,6 @@ export default function Home() {
         )}
       </main>
       <Footer />
-      <ChatBot />
     </div>
   );
 }

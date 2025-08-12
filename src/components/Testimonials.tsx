@@ -101,8 +101,9 @@ const Testimonials: React.FC = () => {
                             {/* Contenido del testimonio */}
                             <div className="mt-4">
                                 <p className="text-gray-600 mb-6 italic">
-                                    "{testimonial.testimonial}"
+                                    &quot;{testimonial.testimonial}&quot;
                                 </p>
+
 
                                 {/* Información del cliente */}
                                 <div className="flex items-center gap-4">
