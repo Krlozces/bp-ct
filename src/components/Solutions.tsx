@@ -154,89 +154,99 @@ export default function Solutions() {
 
                 {/* Solutions Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {solutions.map((solution) => (
-                        <div
-                            key={solution.id}
-                            className="group relative"
-                            onMouseEnter={() => setHoveredCard(solution.id)}
-                            onMouseLeave={() => setHoveredCard(null)}
-                        >
+                    {solutions.map((solution) => {
+                        // Construir mensaje y URL de WhatsApp
+                        const message = encodeURIComponent(`Quiero más información sobre ${solution.title}`);
+                        const whatsappUrl = `https://wa.me/51953469369?text=${message}`;
+
+                        return (
                             <div
-                                className={`
-                  h-full bg-card border border-border rounded-2xl p-8
-                  transition-all duration-300 ease-out
-                  hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1
-                  ${hoveredCard === solution.id ? "border-primary/50" : ""}
-                `}
+                                key={solution.id}
+                                className="group relative"
+                                onMouseEnter={() => setHoveredCard(solution.id)}
+                                onMouseLeave={() => setHoveredCard(null)}
                             >
-                                {/* Icon with gradient background */}
-                                <div className="mb-6">
-                                    <div
-                                        className={`
+                                <div
+                                    className={`
+                      h-full bg-card border border-border rounded-2xl p-8
+                      transition-all duration-300 ease-out
+                      hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1
+                      ${hoveredCard === solution.id ? "border-primary/50" : ""}
+                    `}
+                                >
+                                    {/* Icon with gradient background */}
+                                    <div className="mb-6">
+                                        <div
+                                            className={`
                       inline-flex items-center justify-center w-16 h-16 rounded-xl
                       bg-gradient-to-br ${solution.color}
                       text-white shadow-lg
                       transition-transform duration-300 ease-out
                       ${hoveredCard === solution.id ? "scale-110 rotate-3" : ""}
                     `}
-                                    >
-                                        {solution.icon}
+                                        >
+                                            {solution.icon}
+                                        </div>
                                     </div>
-                                </div>
 
-                                {/* Title */}
-                                <h3 className="text-2xl font-bold text-card-foreground mb-4">{solution.title}</h3>
+                                    {/* Title */}
+                                    <h3 className="text-2xl font-bold text-card-foreground mb-4">{solution.title}</h3>
 
-                                {/* Features List */}
-                                <ul className="space-y-3 mb-6">
-                                    {solution.features.map((feature, index) => (
-                                        <li key={index} className="flex items-start gap-3">
+                                    {/* Features List */}
+                                    <ul className="space-y-3 mb-6">
+                                        {solution.features.map((feature, index) => (
+                                            <li key={index} className="flex items-start gap-3">
+                                                <svg
+                                                    className="w-5 h-5 text-primary flex-shrink-0 mt-0.5"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    stroke="currentColor"
+                                                    strokeWidth="2.5"
+                                                >
+                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                                </svg>
+                                                <span className="text-sm text-muted-foreground leading-relaxed">{feature}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+
+                                    {/* Description */}
+                                    <p className="text-sm text-muted-foreground leading-relaxed mb-6 text-pretty">{solution.description}</p>
+
+                                    {/* CTA Button - Cambiado a enlace de WhatsApp */}
+                                    <a
+                                        href={whatsappUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className={`
+                        w-full py-3 px-6 rounded-lg font-medium
+                        bg-secondary text-secondary-foreground
+                        border border-border cursor-pointer
+                        transition-all duration-300 ease-out
+                        hover:bg-[#10B981] hover:text-primary-foreground hover:border-primary
+                        hover:shadow-lg hover:shadow-primary/20
+                        inline-block text-center
+                        ${hoveredCard === solution.id ? "translate-x-1" : ""}
+                      `}
+                                    >
+                                        <span className="flex items-center justify-center gap-2">
+                                            Más Información
                                             <svg
-                                                className="w-5 h-5 text-primary flex-shrink-0 mt-0.5"
+                                                className={`w-4 h-4 transition-transform duration-300 ${hoveredCard === solution.id ? "translate-x-1" : ""
+                                                    }`}
                                                 fill="none"
                                                 viewBox="0 0 24 24"
                                                 stroke="currentColor"
-                                                strokeWidth="2.5"
+                                                strokeWidth="2"
                                             >
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                                             </svg>
-                                            <span className="text-sm text-muted-foreground leading-relaxed">{feature}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-
-                                {/* Description */}
-                                <p className="text-sm text-muted-foreground leading-relaxed mb-6 text-pretty">{solution.description}</p>
-
-                                {/* CTA Button */}
-                                <button
-                                    className={`
-                    w-full py-3 px-6 rounded-lg font-medium
-                    bg-secondary text-secondary-foreground
-                    border border-border cursor-pointer
-                    transition-all duration-300 ease-out
-                    hover:bg-[#10B981] hover:text-primary-foreground hover:border-primary
-                    hover:shadow-lg hover:shadow-primary/20
-                    ${hoveredCard === solution.id ? "translate-x-1" : ""}
-                  `}
-                                >
-                                    <span className="flex items-center justify-center gap-2">
-                                        Más Información
-                                        <svg
-                                            className={`w-4 h-4 transition-transform duration-300 ${hoveredCard === solution.id ? "translate-x-1" : ""
-                                                }`}
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                            strokeWidth="2"
-                                        >
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                                        </svg>
-                                    </span>
-                                </button>
+                                        </span>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
             </div>
         </section>
