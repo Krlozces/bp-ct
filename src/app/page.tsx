@@ -38,9 +38,9 @@ export default function Home() {
             </section>
             <Comparison />
             <Demo />
-            <section id="about">
+            {/* <section id="about">
               <Team />
-            </section>
+            </section> */}
             <section id="contact">
               <Contact />
             </section>
