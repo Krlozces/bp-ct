@@ -141,21 +141,23 @@ const Comparison: React.FC = () => {
                                 ))}
                             </div>
 
-                            <motion.button
+                            <motion.a
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="mt-8 w-full py-3 rounded-lg font-semibold text-white transition-colors hover:cursor-pointer"
+                                href={`https://wa.me/51953469369?text=${encodeURIComponent(`Quiero adquirir el plan ${plan.name}.`)}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="mt-8 w-full py-3 rounded-lg font-semibold text-white transition-colors hover:cursor-pointer inline-block text-center"
                                 style={{ backgroundColor: plan.color }}
                             >
                                 Elegir Plan
-                            </motion.button>
+                            </motion.a>
                         </motion.div>
                     ))}
                 </div>
-
             </div>
         </section>
     );
 };
 
-export default Comparison; 
+export default Comparison;
