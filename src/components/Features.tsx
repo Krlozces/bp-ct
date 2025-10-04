@@ -7,6 +7,7 @@ import { GrConfigure } from "react-icons/gr";
 import { TbReport } from "react-icons/tb";
 import { LuMessageCircleMore } from "react-icons/lu";
 import React from "react";
+import SpotlightCard from "@/components/SpotlightCard";
 
 const DMSans = DM_Sans({
     weight: ["900", "800", "700", "600"],
@@ -16,7 +17,7 @@ const DMSans = DM_Sans({
 const features = [
     {
         title: "Interfaz Intuitiva",
-        description: "Diseño moderno y fácil de usar que permite a tus empleados aprender rápidamente el sistema.",
+        description: "Diseño moderno y fácil de usar que permite a tus empleados aprender rápidamente.",
         icon: <MdOutlineRocketLaunch />
     },
     {
@@ -26,7 +27,7 @@ const features = [
     },
     {
         title: "Personalizable",
-        description: "Adapta el software a las necesidades específicas de tu empresa con módulos configurables.",
+        description: "Adapta el software a las necesidades específicas de tu empresa.",
         icon: <GrConfigure />
     },
     {
@@ -41,7 +42,7 @@ const features = [
     },
     {
         title: "Integración Total",
-        description: "Conecta con otras herramientas empresariales para un flujo de trabajo sin interrupciones.",
+        description: "Conecta con otras herramientas empresariales para un flujo de trabajo.",
         icon: <MdOutlineIntegrationInstructions />
     }
 ];
@@ -98,15 +99,20 @@ const Features: React.FC = () => {
                         <motion.div
                             key={index}
                             variants={itemVariants}
-                            className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#22C55E]/20 group"
+                            className="rounded-xl group"
                         >
-                            <div className="text-4xl mb-4" style={{ color: "#3B82F6" }}>{feature.icon}</div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-3 transition-colors">
-                                {feature.title}
-                            </h3>
-                            <p className="text-gray-600">
-                                {feature.description}
-                            </p>
+                            <SpotlightCard 
+                                className="bg-white  p-8 rounded-xl transition-all duration-300 hover:border-[#22C55E]/20"
+                                spotlightColor="rgba(34, 197, 94, 0.15)"
+                            >
+                                <div className="text-4xl mb-4" style={{ color: "#3B82F6" }}>{feature.icon}</div>
+                                <h3 className="text-xl font-bold text-gray-900 mb-3 transition-colors">
+                                    {feature.title}
+                                </h3>
+                                <p className="text-gray-600">
+                                    {feature.description}
+                                </p>
+                            </SpotlightCard>
                         </motion.div>
                     ))}
                 </motion.div>
@@ -136,4 +142,4 @@ const Features: React.FC = () => {
     );
 };
 
-export default Features; 
+export default Features;
