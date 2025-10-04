@@ -29,41 +29,43 @@ const Navbar = () => {
 
   return (
     <header className={`font-sans text-white w-full z-50 fixed transition-colors duration-300 ${scrolled ? 'bg-gradient-to-br from-gray-900 via-purple-900 to-blue-900' : 'bg-transparent'}`}>
-      {/* Top bar */}
-      <div className="border-b border-blue-700/30 py-2 text-xs sm:text-sm">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-2 md:gap-0">
-          {/* Contact info */}
-          <div className="flex flex-wrap justify-center md:justify-start gap-4">
-            <div className="flex items-center gap-2 hover:text-blue-300 transition-colors">
-              <FaPhone className="text-blue-300" />
-              <p>+51 976 217 463</p>
+      {/* Top bar - Oculto en móviles muy pequeños */}
+      <div className="hidden sm:block border-b border-blue-700/30 py-2 text-xs lg:text-sm">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4">
+            {/* Contact info */}
+            <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-2 sm:gap-4">
+              <div className="flex items-center justify-center md:justify-start gap-2 hover:text-blue-300 transition-colors">
+                <FaPhone className="text-blue-300 text-xs" />
+                <p className="text-xs lg:text-sm">+51 976 217 463</p>
+              </div>
+              <div className="flex items-center justify-center md:justify-start gap-2 hover:text-blue-300 transition-colors">
+                <FaEnvelope className="text-blue-300 text-xs" />
+                <p className="text-xs lg:text-sm truncate">Cobaltech@info.com</p>
+              </div>
             </div>
-            <div className="flex items-center gap-2 hover:text-blue-300 transition-colors">
-              <FaEnvelope className="text-blue-300" />
-              <p>Cobaltech@info.com</p>
-            </div>
-          </div>
 
-          {/* Action buttons */}
-          <div className="flex flex-wrap justify-center md:justify-end gap-4">
-            <a 
-              href={contactUrl} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="flex items-center gap-2 hover:text-blue-300 transition-colors"
-            >
-              <FaCommentAlt className="text-blue-300" />
-              <p>Contactar</p>
-            </a>
-            <a 
-              href={demoUrl} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-500 px-3 py-1 rounded-full hover:opacity-90 transition-opacity"
-            >
-              <FaUser />
-              <p>Solicitar Demo</p>
-            </a>
+            {/* Action buttons */}
+            <div className="flex flex-col sm:flex-row justify-center md:justify-end gap-2 sm:gap-3">
+              <a 
+                href={contactUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-center justify-center gap-2 hover:text-blue-300 transition-colors px-2 py-1 rounded hover:bg-blue-700/20"
+              >
+                <FaCommentAlt className="text-blue-300 text-xs" />
+                <p className="text-xs lg:text-sm">Contactar</p>
+              </a>
+              <a 
+                href={demoUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-purple-500 px-3 py-1.5 rounded-full hover:opacity-90 transition-opacity text-xs lg:text-sm whitespace-nowrap"
+              >
+                <FaUser className="text-xs" />
+                <p>Solicitar Demo</p>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -73,15 +75,35 @@ const Navbar = () => {
         {/* Logo */}
         <div className="flex items-center">
           <a href="#" className="flex items-center">
-            <h1 className="text-2xl font-bold text-white">
+            <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-white">
               <span className="bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent">Cobal</span>Tech
             </h1>
           </a>
         </div>
 
+        {/* Mobile top buttons - Solo visible en pantallas pequeñas */}
+        {/* <div className="flex sm:hidden items-center gap-2">
+          <a 
+            href={contactUrl} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="flex items-center gap-1 hover:text-blue-300 transition-colors px-2 py-1 rounded text-xs"
+          >
+            <FaCommentAlt className="text-blue-300" />
+          </a>
+          <a 
+            href={demoUrl} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="flex items-center gap-1 bg-gradient-to-r from-blue-500 to-purple-500 px-2 py-1 rounded-full hover:opacity-90 transition-opacity text-xs"
+          >
+            <FaUser />
+          </a>
+        </div> */}
+
         {/* Desktop menu */}
         <nav className="hidden lg:block">
-          <ul className="flex space-x-8 text-sm font-medium">
+          <ul className="flex space-x-6 xl:space-x-8 text-sm font-medium">
             <li>
               <a href="#" className="text-white hover:text-blue-300 transition-colors relative group">
                 Inicio
@@ -134,7 +156,7 @@ const Navbar = () => {
         <div className="lg:hidden">
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="text-white focus:outline-none text-xl"
+            className="text-white focus:outline-none text-xl ml-2"
           >
             {mobileMenuOpen ? <FaTimes /> : <FaBars />}
           </button>
@@ -151,30 +173,60 @@ const Navbar = () => {
             transition={{ duration: 0.3 }}
             className="lg:hidden overflow-hidden"
           >
-            <div className="px-4 pt-2 pb-4 space-y-4 bg-blue-900/90 backdrop-blur-sm">
-              <a href="#" className="block py-2 text-white hover:text-blue-300">Inicio</a>
-              <a href="#" className="block py-2 text-white hover:text-blue-300">Nosotros</a>
+            <div className="px-4 pt-2 pb-4 space-y-3 bg-blue-900/95 backdrop-blur-sm">
+              <a href="#" className="block py-2 text-white hover:text-blue-300 text-base">Inicio</a>
+              <a href="#" className="block py-2 text-white hover:text-blue-300 text-base">Nosotros</a>
               
               <div className="relative">
                 <button 
                   onClick={() => setDropdownOpen(!dropdownOpen)}
-                  className="flex items-center justify-between w-full py-2 text-white hover:text-blue-300"
+                  className="flex items-center justify-between w-full py-2 text-white hover:text-blue-300 text-base"
                 >
                   <span>Servicios</span>
                   <FaChevronDown className={`text-xs transition-transform ${dropdownOpen ? 'transform rotate-180' : ''}`} />
                 </button>
                 
-                {dropdownOpen && (
-                  <div className="pl-4 mt-2 space-y-2 border-l-2 border-blue-500/30">
-                    <a href="#" className="block py-1 text-blue-200 hover:text-white text-sm">Desarrollo Custom</a>
-                    <a href="#" className="block py-1 text-blue-200 hover:text-white text-sm">SaaS Empresarial</a>
-                    <a href="#" className="block py-1 text-blue-200 hover:text-white text-sm">Integraciones</a>
-                    <a href="#" className="block py-1 text-blue-200 hover:text-white text-sm">Consultoría TI</a>
-                  </div>
-                )}
+                <AnimatePresence>
+                  {dropdownOpen && (
+                    <motion.div 
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="pl-4 mt-2 space-y-2 border-l-2 border-blue-500/30 overflow-hidden"
+                    >
+                      <a href="#" className="block py-1.5 text-blue-200 hover:text-white text-sm">Desarrollo Custom</a>
+                      <a href="#" className="block py-1.5 text-blue-200 hover:text-white text-sm">SaaS Empresarial</a>
+                      <a href="#" className="block py-1.5 text-blue-200 hover:text-white text-sm">Integraciones</a>
+                      <a href="#" className="block py-1.5 text-blue-200 hover:text-white text-sm">Consultoría TI</a>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
               
-              <a href="#" className="block py-2 text-white hover:text-blue-300">Contacto</a>
+              <a href="#" className="block py-2 text-white hover:text-blue-300 text-base">Contacto</a>
+              
+              {/* Mobile contact buttons */}
+              <div className="pt-3 border-t border-blue-700/30 space-y-2">
+                <a 
+                  href={contactUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 py-2 px-4 rounded-lg transition-colors text-sm"
+                >
+                  <FaCommentAlt />
+                  <span>Contactar</span>
+                </a>
+                <a 
+                  href={demoUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-purple-500 py-2 px-4 rounded-lg hover:opacity-90 transition-opacity text-sm"
+                >
+                  <FaUser />
+                  <span>Solicitar Demo</span>
+                </a>
+              </div>
             </div>
           </motion.div>
         )}
