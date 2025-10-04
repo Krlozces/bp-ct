@@ -68,7 +68,7 @@ const Comparison: React.FC = () => {
     const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
 
     return (
-        <section className={`py-20 bg-gray-50 ${DMSans.className}`}>
+        <section className={`py-20 bg-white ${DMSans.className}`}>
             <div className="max-w-[1400px] mx-auto px-8">
                 {/* Encabezado */}
                 <motion.div 

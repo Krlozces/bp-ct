@@ -102,7 +102,7 @@ const Features: React.FC = () => {
                             className="rounded-xl group"
                         >
                             <SpotlightCard 
-                                className="bg-white  p-8 rounded-xl transition-all duration-300 hover:border-[#22C55E]/20"
+                                className="cursor-pointer bg-white  p-8 rounded-xl transition-all duration-300 hover:border-[#22C55E]/20"
                                 spotlightColor="rgba(34, 197, 94, 0.15)"
                             >
                                 <div className="text-4xl mb-4" style={{ color: "#3B82F6" }}>{feature.icon}</div>

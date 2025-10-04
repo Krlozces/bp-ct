@@ -50,7 +50,7 @@ const Demo: React.FC = () => {
     };
 
     return (
-        <section className={`py-20 bg-gradient-to-b from-gray-50 to-white ${DMSans.className}`} id="demo">
+        <section className={`py-20 bg-gradient-to-b from-white to-white ${DMSans.className}`} id="demo">
             <div className="max-w-[1400px] mx-auto px-8">
                 {/* Encabezado */}
                 <motion.div 
