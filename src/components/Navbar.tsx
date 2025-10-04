@@ -21,6 +21,12 @@ const Navbar = () => {
     };
   }, [scrolled]);
 
+  // Construir URLs de WhatsApp
+  const contactMessage = encodeURIComponent('Hola, quiero contactarme con ustedes.');
+  const demoMessage = encodeURIComponent('Hola, quiero solicitar una demo.');
+  const contactUrl = `https://wa.me/51953469369?text=${contactMessage}`;
+  const demoUrl = `https://wa.me/51953469369?text=${demoMessage}`;
+
   return (
     <header className={`font-sans text-white w-full z-50 fixed transition-colors duration-300 ${scrolled ? 'bg-gradient-to-br from-gray-900 via-purple-900 to-blue-900' : 'bg-transparent'}`}>
       {/* Top bar */}
@@ -40,11 +46,21 @@ const Navbar = () => {
 
           {/* Action buttons */}
           <div className="flex flex-wrap justify-center md:justify-end gap-4">
-            <a href="#" className="flex items-center gap-2 hover:text-blue-300 transition-colors">
+            <a 
+              href={contactUrl} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="flex items-center gap-2 hover:text-blue-300 transition-colors"
+            >
               <FaCommentAlt className="text-blue-300" />
               <p>Contactar</p>
             </a>
-            <a href="#" className="flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-500 px-3 py-1 rounded-full hover:opacity-90 transition-opacity">
+            <a 
+              href={demoUrl} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-500 px-3 py-1 rounded-full hover:opacity-90 transition-opacity"
+            >
               <FaUser />
               <p>Solicitar Demo</p>
             </a>
