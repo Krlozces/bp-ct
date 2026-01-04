@@ -71,25 +71,25 @@ export default function Footer() {
             <h3 className="text-xl font-bold text-blue-300">Enlaces Rápidos</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/about" className="text-blue-100 hover:text-white transition-colors flex items-center group">
+                <Link href="/" className="text-blue-100 hover:text-white transition-colors flex items-center group">
                   <span className="w-1 h-1 bg-blue-300 rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                   ¿Quiénes somos?
                 </Link>
               </li>
               <li>
-                <Link href="/mission" className="text-blue-100 hover:text-white transition-colors flex items-center group">
+                <Link href="/" className="text-blue-100 hover:text-white transition-colors flex items-center group">
                   <span className="w-1 h-1 bg-blue-300 rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                   Misión y Visión
                 </Link>
               </li>
               <li>
-                <Link href="/team" className="text-blue-100 hover:text-white transition-colors flex items-center group">
+                <Link href="/" className="text-blue-100 hover:text-white transition-colors flex items-center group">
                   <span className="w-1 h-1 bg-blue-300 rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                   Nuestro Equipo
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="text-blue-100 hover:text-white transition-colors flex items-center group">
+                <Link href="/" className="text-blue-100 hover:text-white transition-colors flex items-center group">
                   <span className="w-1 h-1 bg-blue-300 rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                   Blog Tecnológico
                 </Link>
@@ -102,28 +102,48 @@ export default function Footer() {
             <h3 className="text-xl font-bold text-blue-300">Soluciones</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/solutions/erp" className="text-blue-100 hover:text-white transition-colors flex items-center group">
+                <a
+                  href={`https://wa.me/51941644810?text=${encodeURIComponent('Hola, quiero información sobre Sistemas ERP')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-100 hover:text-white transition-colors flex items-center group"
+                >
                   <span className="w-1 h-1 bg-blue-300 rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                   Sistemas ERP
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/solutions/crm" className="text-blue-100 hover:text-white transition-colors flex items-center group">
+                <a
+                  href={`https://wa.me/51941644810?text=${encodeURIComponent('Hola, quiero información sobre Plataformas CRM')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-100 hover:text-white transition-colors flex items-center group"
+                >
                   <span className="w-1 h-1 bg-blue-300 rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                   Plataformas CRM
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/solutions/bi" className="text-blue-100 hover:text-white transition-colors flex items-center group">
+                <a
+                  href={`https://wa.me/51941644810?text=${encodeURIComponent('Hola, quiero información sobre Business Intelligence')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-100 hover:text-white transition-colors flex items-center group"
+                >
                   <span className="w-1 h-1 bg-blue-300 rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                   Business Intelligence
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/solutions/custom" className="text-blue-100 hover:text-white transition-colors flex items-center group">
+                <a
+                  href={`https://wa.me/51941644810?text=${encodeURIComponent('Hola, quiero información sobre Desarrollo a Medida')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-100 hover:text-white transition-colors flex items-center group"
+                >
                   <span className="w-1 h-1 bg-blue-300 rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                   Desarrollo a Medida
-                </Link>
+                </a>
               </li>
             </ul>
           </div>

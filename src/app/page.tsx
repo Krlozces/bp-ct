@@ -10,7 +10,7 @@ import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Demo from "@/components/Demo";
 // import Team from "@/components/Team";
-import Comparison from "@/components/Comparison";
+// import Comparison from "@/components/Comparison";
 
 export default function Home() {
   // Estado para controlar cuándo mostrar el contenido
