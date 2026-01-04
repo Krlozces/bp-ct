@@ -4,8 +4,8 @@ const Hero = () => {
   // URLs de WhatsApp
   const contactMessage = encodeURIComponent('Hola, quiero contactarme con ustedes.');
   const projectsMessage = encodeURIComponent('Hola, quiero ver sus proyectos.');
-  const contactUrl = `https://wa.me/51953469369?text=${contactMessage}`;
-  const projectsUrl = `https://wa.me/51953469369?text=${projectsMessage}`;
+  const contactUrl = `https://wa.me/51941644810?text=${contactMessage}`;
+  const projectsUrl = `https://wa.me/51941644810?text=${projectsMessage}`;
 
   return (
     <section className="relative bg-gradient-to-br from-gray-900 via-purple-900 to-blue-900 text-white min-h-screen flex items-center overflow-hidden">

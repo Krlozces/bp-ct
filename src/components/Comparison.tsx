@@ -144,7 +144,7 @@ const Comparison: React.FC = () => {
                             <motion.a
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                href={`https://wa.me/51953469369?text=${encodeURIComponent(`Quiero adquirir el plan ${plan.name}.`)}`}
+                                href={`https://wa.me/51941644810?text=${encodeURIComponent(`Quiero adquirir el plan ${plan.name}.`)}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="mt-8 w-full py-3 rounded-lg font-semibold text-white transition-colors hover:cursor-pointer inline-block text-center"

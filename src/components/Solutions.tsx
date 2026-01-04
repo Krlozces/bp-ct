@@ -157,7 +157,7 @@ export default function Solutions() {
                     {solutions.map((solution) => {
                         // Construir mensaje y URL de WhatsApp
                         const message = encodeURIComponent(`Quiero más información sobre ${solution.title}`);
-                        const whatsappUrl = `https://wa.me/51953469369?text=${message}`;
+                        const whatsappUrl = `https://wa.me/51941644810?text=${message}`;
 
                         return (
                             <div

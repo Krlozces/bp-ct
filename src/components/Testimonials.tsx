@@ -5,9 +5,9 @@ import { DM_Sans } from "next/font/google";
 import React from "react";
 import Image from "next/image";
 import { FaQuoteLeft } from "react-icons/fa";
-import team1 from "../components/assets/team1.jpeg";
-import team2 from "../components/assets/team2.jpeg";
-import team3 from "../components/assets/team3.jpeg";
+import team1 from "../components/assets/person-male.png";
+import team2 from "../components/assets/person-female.jpg";
+import team3 from "../components/assets/person-male.png";
 
 
 const DMSans = DM_Sans({

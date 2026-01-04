@@ -36,7 +36,7 @@ export default function Home() {
             <section id="clients">
               <Testimonials />
             </section>
-            <Comparison />
+            {/* <Comparison /> */}
             <Demo />
             {/* <section id="about">
               <Team />

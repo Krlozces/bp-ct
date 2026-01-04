@@ -20,7 +20,7 @@
 // const chatResponses = {
 //     contacto: {
 //         keywords: ['contacto', 'email', 'teléfono', 'dirección', 'ubicación', 'dónde', 'comunicar'],
-//         response: 'Puedes contactarnos en:\n Email: petucodeSAC@gmail.com\n Tel: +51 976 217 463\n Dirección: Chiclayo - Perú\n\n¿Te gustaría hablar directamente con nosotros por WhatsApp?'
+//         response: 'Puedes contactarnos en:\n Email: petucodeSAC@gmail.com\n Tel: +51 941 644 810\n Dirección: Chiclayo - Perú\n\n¿Te gustaría hablar directamente con nosotros por WhatsApp?'
 //     },
 //     precios: {
 //         keywords: ['precio', 'costo', 'planes', 'pagar', 'valor', 'cuánto', 'tarifa'],

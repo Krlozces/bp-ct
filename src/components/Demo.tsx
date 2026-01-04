@@ -73,7 +73,7 @@ const Demo: React.FC = () => {
         const message = encodeURIComponent(
             `Nombre: ${formData.nombre}\nEmail: ${formData.email}\nTeléfono: ${formData.telefono}\nEmpresa: ${formData.empresa}\nMensaje: ${formData.mensaje}\n\nSolicito una demo personalizada.`
         );
-        const whatsappUrl = `https://wa.me/51953469369?text=${message}`;
+        const whatsappUrl = `https://wa.me/51941644810?text=${message}`;
         // Redirigir a WhatsApp
         window.open(whatsappUrl, '_blank');
         // Cerrar modal y resetear formulario
@@ -85,7 +85,7 @@ const Demo: React.FC = () => {
         <section className={`py-20  ${DMSans.className}`} id="demo">
             <div className="max-w-[1400px] mx-auto px-8">
                 {/* Encabezado */}
-                <motion.div 
+                <motion.div
                     className="text-center mb-16"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -114,26 +114,32 @@ const Demo: React.FC = () => {
                                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
                             </div>
-                            
+
                             {/* Contenido de la demo */}
                             <div className="relative">
-                                <video
-                                    ref={videoRef}
-                                    className="w-full h-[400px] object-cover"
-                                    src="/demo-video.mp4" // Reemplaza con la ruta de tu video
-                                    poster="/poster.jpg" // Reemplaza con la ruta de tu imagen de portada
-                                >
-                                    Tu navegador no soporta el elemento de video.
-                                </video>
-                                
-                                {/* Overlay de controles */}
-                                <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 hover:opacity-100 transition-opacity">
-                                    <button
-                                        onClick={togglePlay}
-                                        className="cursor-pointer bg-[#22C55E] text-white p-4 rounded-full hover:bg-[#16A34A] transition-colors"
-                                    >
-                                        {isPlaying ? <FaPause className="text-2xl" /> : <FaPlay className="text-2xl" />}
-                                    </button>
+                                <div className="w-full">
+                                    <div className="relative w-full">
+                                        <video
+                                            ref={videoRef}
+                                            src="/demo-video.mp4"
+                                            poster="/poster.jpg"
+                                            playsInline
+                                            preload="metadata"
+                                            className="w-full h-auto max-h-[320px] sm:max-h-[420px] md:max-h-[500px] object-contain rounded-b-xl bg-black"
+                                        >
+                                            Tu navegador no soporta el elemento de video.
+                                        </video>
+
+                                        {/* Overlay de controles: pointer-events-none para el fondo, pointer-events-auto en el botón */}
+                                        <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 hover:opacity-100 transition-opacity pointer-events-none">
+                                            <button
+                                                onClick={togglePlay}
+                                                className="pointer-events-auto bg-[#22C55E] text-white p-4 rounded-full hover:bg-[#16A34A] transition-colors"
+                                            >
+                                                {isPlaying ? <FaPause className="text-2xl" /> : <FaPlay className="text-2xl" />}
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -159,11 +165,10 @@ const Demo: React.FC = () => {
                                         whileInView={{ opacity: 1, x: 0 }}
                                         viewport={{ once: true }}
                                         transition={{ duration: 0.6, delay: index * 0.1 }}
-                                        className={`p-4 rounded-lg cursor-pointer transition-all ${
-                                            activeFeature === index 
-                                                ? 'bg-[#22C55E]/10 border-2 border-[#22C55E]' 
+                                        className={`p-4 rounded-lg cursor-pointer transition-all ${activeFeature === index
+                                                ? 'bg-[#22C55E]/10 border-2 border-[#22C55E]'
                                                 : 'bg-gray-50 hover:bg-gray-100'
-                                        }`}
+                                            }`}
                                         onClick={() => setActiveFeature(index)}
                                     >
                                         <div className="flex items-center gap-4">
@@ -181,7 +186,7 @@ const Demo: React.FC = () => {
                         </div>
 
                         <div className="pt-4">
-                            <button 
+                            <button
                                 onClick={() => setIsModalOpen(true)}
                                 className="inline-flex items-center gap-2 bg-[#22C55E] text-white px-6 py-3 rounded-lg hover:bg-[#16A34A] transition-colors font-semibold hover:cursor-pointer"
                             >

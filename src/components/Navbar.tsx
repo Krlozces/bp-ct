@@ -24,8 +24,8 @@ const Navbar = () => {
   // Construir URLs de WhatsApp
   const contactMessage = encodeURIComponent('Hola, quiero contactarme con ustedes.');
   const demoMessage = encodeURIComponent('Hola, quiero solicitar una demo.');
-  const contactUrl = `https://wa.me/51953469369?text=${contactMessage}`;
-  const demoUrl = `https://wa.me/51953469369?text=${demoMessage}`;
+  const contactUrl = `https://wa.me/51941644810?text=${contactMessage}`;
+  const demoUrl = `https://wa.me/51941644810?text=${demoMessage}`;
 
   return (
     <header className={`font-sans text-white w-full z-50 fixed transition-colors duration-300 ${scrolled ? 'bg-gradient-to-br from-gray-900 via-purple-900 to-blue-900' : 'bg-transparent'}`}>
@@ -37,7 +37,7 @@ const Navbar = () => {
             <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-2 sm:gap-4">
               <div className="flex items-center justify-center md:justify-start gap-2 hover:text-blue-300 transition-colors">
                 <FaPhone className="text-blue-300 text-xs" />
-                <p className="text-xs lg:text-sm">+51 976 217 463</p>
+                <p className="text-xs lg:text-sm">+51 941 644 810</p>
               </div>
               <div className="flex items-center justify-center md:justify-start gap-2 hover:text-blue-300 transition-colors">
                 <FaEnvelope className="text-blue-300 text-xs" />
@@ -111,12 +111,12 @@ const Navbar = () => {
               </a>
             </li>
             <li>
-              <a href="#" className="text-white hover:text-blue-300 transition-colors relative group">
+              <a href="#about" className="text-white hover:text-blue-300 transition-colors relative group">
                 Nosotros
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-300 group-hover:w-full transition-all duration-300"></span>
               </a>
             </li>
-            <li className="relative">
+            {/* <li className="relative">
               <button 
                 onClick={() => setDropdownOpen(!dropdownOpen)}
                 className="flex items-center text-white hover:text-blue-300 transition-colors relative group"
@@ -142,9 +142,9 @@ const Navbar = () => {
                   </motion.ul>
                 )}
               </AnimatePresence>
-            </li>
+            </li> */}
             <li>
-              <a href="#" className="text-white hover:text-blue-300 transition-colors relative group">
+              <a href="#contact" className="text-white hover:text-blue-300 transition-colors relative group">
                 Contacto
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-300 group-hover:w-full transition-all duration-300"></span>
               </a>

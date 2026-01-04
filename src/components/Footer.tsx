@@ -138,7 +138,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-3 text-blue-100">
                 <FaPhone className="text-blue-300 mt-1 flex-shrink-0" />
-                <span>+51 976 217 463</span>
+                <span>+51 941 644 810</span>
               </li>
               <li className="flex items-start gap-3 text-blue-100">
                 <FaMapMarkerAlt className="text-blue-300 mt-1 flex-shrink-0" />
